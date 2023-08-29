@@ -26,6 +26,12 @@
 | `wait3`| `int *_Nullable wstatus, int options, struct rusage *_Nullable rusage`| `pid_t`| Hace lo mismo que wait pero en el puntero rusage guarda información del hilo hijo |
 | `wait4`| `pid_t pid, int *_Nullable wstatus, int options, struct rusage *_Nullable rusage` | `pid_t` | Hace lo mismo que waitpid pero en el puntero rusage guarda información del hilo hijo |
 | `signal`| `int signum, sighandler_t handler` | sighandler_t | Esta función asigna al manejador una señal, el manejador es una función que ante una señal que coincida realiza una acción |
+| `sigaction`| `int signum, const struct sigaction *_Nullable restrict act, struct sigaction *_Nullable restrict oldact` | `int`| Ante la señal que se pasa como primer parametro cambia la acción del tercer parametro por la acción del segundo para esa señal. |
+| `kill`| `pid_t pid, int sig`| `int` | Envia mediante el pid proporcionado a el proceso una señal personalizada, si se utiliza el 0 en el pid envía a todos los procesos la señal personalizada |
+| `exit`| `int status`| `void` | Finaliza el proceso devolviendo el código de status al finalizarlo |
+| `getcwd` | `char buf[.size], size_t size`| `char *` | Devuelve un string con el path actual donde se esta ejecutando el proceso |
+| `chdir` | `const char *path` | `int` | Cambia al directorio donde nos encontramos por el nuevo que le pasemos por el path |
+| `stat`| `const char *restrict pathname, struct stat *restrict statbuf` | `int` | Devuelve información sobre el fichero que le pasemos como pathname en el parametro statbuf |
 | `opendir` | `char *str` | `DIR *` | Recibe la ruta al directorio y devuelve un puntero a una estructura tipo DIR |
 | `readdir` | `DIR *` | `struct dirent` | Cada llamada devuelve el siguiente elemento dentro del directorio como un nodo de la estructura dirent |
 | `closedir` | `DIR *` | `int` | Cierra el directorio abierto con opendir. Devielve 0 en éxito y -1 en error |
