@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/14 12:52:38 by paescano         ###   ########.fr       */
+/*   Created: 2023/09/13 16:12:01 by paescano          #+#    #+#             */
+/*   Updated: 2023/09/14 11:41:33 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_global	g_global;
-
-static void	ft_leaks(void)
+static void	ft_init_signals(void)
 {
-	system("leaks minishell");
+	signal(SIGINT, ft_handler_contrl_c);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, ft_handler_contrl_d);
 }
 
-static void	ft_execute_minishell(void)
+void	ft_init_minishell(void)
 {
-	char	*line;
-
-	line = readline("minishell >");
-	if (line && line[0] != '\0')
-		add_history(line);
-	free(line);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	(void)env;
-	atexit(ft_leaks);
-	ft_init_minishell();
-	while (1)
-	{
-		ft_execute_minishell();
-	}
-	ft_free_all();
-	return (0);
+	ft_init_signals();
 }
