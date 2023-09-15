@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/13 17:38:47 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:54:00 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	ft_init_minishell(void);
  * 
  * @param sig signal number
  */
-void	ft_handler_contrl_c(int sig);
+void	ft_handler_ctrl_c(int sig);
 /**
  * @brief handler for SIGTERM, exits the program
  * 
- * @param sig signal number
+ * @param char * input
  */
-void	ft_handler_contrl_d(int sig);
+void	ft_handler_ctrl_d(char *input);
 
 // utils
 /**

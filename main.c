@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/14 12:52:38 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:50:01 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ static void	ft_leaks(void)
 
 static void	ft_execute_minishell(void)
 {
-	char	*line;
+	char	*input;
 
-	line = readline("minishell >");
-	if (line && line[0] != '\0')
-		add_history(line);
-	free(line);
+	input = readline("minishell >");
+	if (!input)
+		ft_handler_ctrl_d(input);
+	if (input[0])
+		add_history(input);
+	free(input);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -34,7 +36,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	ft_init_minishell();
 	while (1)
 	{
