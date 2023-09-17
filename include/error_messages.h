@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minishell.c                                   :+:      :+:    :+:   */
+/*   error_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 16:12:01 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 17:19:01 by paescano         ###   ########.fr       */
+/*   Created: 2023/09/17 19:21:26 by paescano          #+#    #+#             */
+/*   Updated: 2023/09/17 19:26:00 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ERROR_MESSAGES_H
+# define ERROR_MESSAGES_H
 
-static void	ft_init_signals(void)
-{
-	signal(SIGINT, ft_handler_ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
-}
+# define ERROR_MALLOC "\033[31mError\nMalloc failed\033[0m\n"
 
-void	ft_init_minishell(char **env)
-{
-	ft_init_signals();
-	ft_init_env(env);
-}
+#endif

@@ -6,7 +6,7 @@
 #    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/09/15 17:50:12 by paescano         ###   ########.fr        #
+#    Updated: 2023/09/17 19:47:36 by paescano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ B = "\033[34m"
 X = "\033[0m"
 
 CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-		inits/init_minishell.c utils/ft_free_all.c utils/ft_signals_handler.c \
+		handlers/handler_env.c inits/init_minishell.c inits/init_env.c \
+		utils/ft_free_all.c utils/ft_signals_handler.c utils/ft_split.c \
+		utils/ft_strdup.c \
 
 INCLUDES = -I ./include
 
@@ -62,6 +64,6 @@ re: fclean all
 
 norma:
 	@echo $(B)Checking Norminette...$(X)
-	@norminette $(CFILES) $(INCLUDES)
+	@norminette $(CFILES) ./include
 
 .PHONY: all clean fclean re norma
