@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	ft_insert_env(char *key, char *value)
+static void	ft_insert_env(char *key, char *value)
 {
 	t_env	*tmp;
 	int		i;
@@ -35,5 +35,50 @@ void	ft_insert_env(char *key, char *value)
 	tmp[i + 1].value = g_global.env[i + 1].value;
 	if (g_global.env)
 		free(g_global.env);
+	g_global.env = tmp;
+}
+
+void	ft_update_env(char *key, char *value)
+{
+	int	i;
+
+	i = 0;
+	while (i < g_global.n_env)
+	{
+		if (ft_strcmp(g_global.env[i].key, key) == 0)
+		{
+			free(g_global.env[i].value);
+			g_global.env[i].value = value;
+			return ;
+		}
+		i++;
+	}
+	ft_insert_env(key, value);
+}
+
+void	ft_delete_one_env(char *key)
+{
+	t_env	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	g_global.n_env--;
+	tmp = (t_env *)malloc(sizeof(t_env) * g_global.n_env + 1);
+	tmp[g_global.n_env].key = NULL;
+	if (!tmp)
+		ft_free_error(ERROR_MALLOC);
+	while (i < g_global.n_env + 1)
+	{
+		if (ft_strcmp(g_global.env[i].key, key) != 0)
+		{
+			tmp[j].key = g_global.env[i].key;
+			tmp[j].value = g_global.env[i].value;
+			j++;
+		}
+		i++;
+	}
+	free(g_global.env);
 	g_global.env = tmp;
 }

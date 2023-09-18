@@ -26,7 +26,7 @@ X = "\033[0m"
 CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 		handlers/handler_env.c inits/init_minishell.c inits/init_env.c \
 		utils/ft_free_all.c utils/ft_signals_handler.c utils/ft_split.c \
-		utils/ft_strdup.c \
+		utils/ft_strcmp.c utils/ft_strdup.c \
 
 INCLUDES = -I ./include
 

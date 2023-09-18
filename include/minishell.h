@@ -80,12 +80,18 @@ void	ft_handler_ctrl_d(char *input);
 
 // handlers
 /**
- * @brief insert a new enviroment variable
+ * @brief insert a new enviroment variable or updates an existing one
  * 
  * @param key name of the variable
  * @param value value of the variable
  */
-void	ft_insert_env(char *key, char *value);
+void	ft_update_env(char *key, char *value);
+/**
+ * @brief deletes an enviroment variable
+ * 
+ * @param key key of the variable to delete
+ */
+void	ft_delete_one_env(char *key);
 
 // utils
 /**
@@ -114,5 +120,13 @@ char	*ft_strdup(char *s1);
  * @return char** strings divided
  */
 char	**ft_split(char *s, char c);
+/**
+ * @brief compares two strings
+ * 
+ * @param s1 string 1
+ * @param s2 string 2
+ * @return int returns 0 if the strings are equal, -1 if not
+ */
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
