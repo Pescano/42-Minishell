@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:36:27 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 19:55:15 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:01:57 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	ft_insert_env(char *key, char *value)
 	}
 	tmp[i].key = key;
 	tmp[i].value = value;
-	tmp[i + 1].key = g_global.env[i + 1].key;
-	tmp[i + 1].value = g_global.env[i + 1].value;
+	tmp[i + 1].key = g_global.env[i].key;
+	tmp[i + 1].value = g_global.env[i].value;
 	if (g_global.env)
 		free(g_global.env);
 	g_global.env = tmp;
@@ -47,6 +47,7 @@ void	ft_update_env(char *key, char *value)
 	{
 		if (ft_strcmp(g_global.env[i].key, key) == 0)
 		{
+			free(key);
 			free(g_global.env[i].value);
 			g_global.env[i].value = value;
 			return ;
@@ -54,6 +55,12 @@ void	ft_update_env(char *key, char *value)
 		i++;
 	}
 	ft_insert_env(key, value);
+}
+
+void	ft_free_env(char *key, char *value)
+{
+	free(key);
+	free(value);
 }
 
 void	ft_delete_one_env(char *key)
@@ -77,6 +84,8 @@ void	ft_delete_one_env(char *key)
 			tmp[j].value = g_global.env[i].value;
 			j++;
 		}
+		else
+			ft_free_env(g_global.env[i].value, g_global.env[i].key);
 		i++;
 	}
 	free(g_global.env);

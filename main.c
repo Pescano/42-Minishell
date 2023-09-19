@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 19:32:33 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:05:21 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ static void	ft_execute_minishell(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	(void)argc;
 	(void)argv;
 	atexit(ft_leaks);
+	if (argc != 1)
+		exit(0);
 	ft_init_minishell(env);
 	while (1)
 	{
@@ -57,3 +58,8 @@ int	main(int argc, char **argv, char **env)
 	ft_free_all();
 	return (0);
 }
+
+//	ft_update_env(ft_strdup("hola"), ft_strdup("adios"));
+//	ft_update_env(ft_strdup("SHLVL"), ft_strdup("2"));
+//	ft_delete_one_env("USER");
+//  estos son ejemplos de como han de usarse las funciones de env
