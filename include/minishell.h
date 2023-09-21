@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 19:55:40 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:48:26 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,24 @@ void	ft_handler_ctrl_d(char *input);
 
 // handlers
 /**
- * @brief insert a new enviroment variable or updates an existing one
+ * @brief insert a new environment variable or updates an existing one
  * 
  * @param key name of the variable
  * @param value value of the variable
  */
 void	ft_update_env(char *key, char *value);
 /**
- * @brief deletes an enviroment variable
+ * @brief deletes an environment variable
  * 
  * @param key key of the variable to delete
  */
 void	ft_delete_one_env(char *key);
+/**
+ * @brief returns the value of a environment variable
+ * 
+ * @param key key of the variable to search
+*/
+char	*ft_getenv(char *key);
 
 // utils
 /**
@@ -125,8 +131,16 @@ char	**ft_split(char *s, char c);
  * 
  * @param s1 string 1
  * @param s2 string 2
- * @return int returns 0 if the strings are equal, -1 if not
+ * @return int returns 0 if the strings are equal, the difference in ascii values between them if not
  */
 int		ft_strcmp(char *s1, char *s2);
+/**
+ * @brief creates a new string from another one
+ * 
+ * @param s the source string
+ * @param start the starting position inside the source string
+ * @param len the number of characters copied from "start"
+*/
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
