@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_messages.h                                   :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 19:21:26 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 11:03:18 by paescano         ###   ########.fr       */
+/*   Created: 2023/09/21 13:06:49 by paescano          #+#    #+#             */
+/*   Updated: 2023/09/21 13:28:22 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_MESSAGES_H
-# define ERROR_MESSAGES_H
+#include "minishell.h"
 
-# define ERROR_MALLOC "\033[31mError\nMalloc failed\033[0m\n"
-# define ERROR_QUOTES "Syntax error, unclosed quotes\n"
-
-#endif
+int	ft_lexer(char *cmd)
+{
+	if (!ft_check_quotes(cmd))
+		return (0);
+	return (1);
+}

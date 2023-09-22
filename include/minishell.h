@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/21 16:51:12 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:07:15 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,32 @@
 # define MAGENTA "\033[35m"
 # define WHITE "\033[0m"
 
+// Quotes states
+# define NO_QUOTES 0
+# define DOUBLE_QUOTE_INCOMPLETE 1
+# define DOUBLE_QUOTE_COMPLETE 2
+# define SINGLE_QUOTE_IMCOMPLETE 3
+# define SINGLE_QUOTE_COMPLETE 4
+
+// Tokens
+enum e_tokens {
+	PIPE = '|',
+	SINGLE_QUOTE = '\'',
+	DOUBLE_QUOTE = '\"',
+	LESS = '<',
+	GREAT = '>',
+	TABS = '\t',
+	SPACES = ' ',
+};
+
 // Structs
+typedef struct s_lexer
+{
+	int				quotes_state;
+	int				pipe_state;
+	int				redir_state;
+}	t_lexer;
+
 typedef struct s_env
 {
 	char			*key;
@@ -45,6 +70,7 @@ typedef struct s_global
 	int		fd_in;
 	int		fd_out;
 	int		n_env;
+	t_lexer	lexer;
 	t_env	*env;
 }	t_global;
 
@@ -100,6 +126,22 @@ void	ft_delete_one_env(char *key);
 */
 char	*ft_getenv(char *key);
 
+// lexer 
+/**
+ * @brief checks if the syntax of the command is correct
+ * 
+ * @param cmd command to check 
+ * @return int 1 if the syntax is correct, 0 if not
+ */
+int		ft_lexer(char *cmd);
+/**
+ * @brief checks if the quotes are closed
+ * 
+ * @param cmd command to check
+ * @return int 1 if the quotes are closed, 0 if not
+ */
+int		ft_check_quotes(char *cmd);
+
 // utils
 /**
  * @brief frees all the allocated memory
@@ -132,7 +174,8 @@ char	**ft_split(char *s, char c);
  * 
  * @param s1 string 1
  * @param s2 string 2
- * @return int returns 0 if the strings are equal, the difference in ascii values between them if not
+ * @return int returns 0 if the strings are equal, the difference in 
+ * ascii values between them if not
  */
 int		ft_strcmp(char *s1, char *s2);
 /**
@@ -142,7 +185,7 @@ int		ft_strcmp(char *s1, char *s2);
  * @param start the starting position inside the source string
  * @param len the number of characters copied from "start"
 */
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 // execute
 /**
