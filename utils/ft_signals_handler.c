@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:19:39 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/20 15:58:54 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:54:08 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_handler_ctrl_c(int sig)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		write(1, "   \n", 4);
+		write(1, "   ", 3);
+		printf("\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
@@ -29,6 +30,5 @@ void	ft_handler_ctrl_d(char *input)
 {
 	free(input);
 	ft_free_all();
-	write(1, "exit\n", 5);
 	exit(0);
 }

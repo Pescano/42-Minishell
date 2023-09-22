@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:36:27 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/20 17:34:06 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:55:49 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*ft_getenv(char *key)
 	i = 0;
 	while (i < g_global.n_env)
 	{
-		if (g_global.env[i].key == key)
+		if (!ft_strcmp(key, g_global.env[i].key))
 			return (g_global.env[i].value);
 		i++;
 	}

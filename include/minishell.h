@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/20 17:48:26 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:51:12 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <unistd.h>
+# include <limits.h>
 # include <sys/ioctl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -64,7 +65,7 @@ void	ft_init_minishell(char **env);
  */
 void	ft_init_env(char **env);
 
-//signals handler
+// signals handler
 /**
  * @brief handler for SIGINT, prints a new line and clears the line
  * 
@@ -142,5 +143,34 @@ int		ft_strcmp(char *s1, char *s2);
  * @param len the number of characters copied from "start"
 */
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+// execute
+/**
+ * @brief prints the environment variables
+ * 
+*/
+void	ft_env(void);
+/**
+ * @brief inserts or updates the given environment variable
+ * 
+ * @param str the environment variable to set in "key=value" format
+*/
+void	ft_export(char *str);
+/**
+ * @brief deletes an environment variable
+ * 
+ * @param key the name of the varable to remove
+*/
+void	ft_unset(char *key);
+/**
+ * @brief prints the current working directory
+*/
+void	ft_pwd(void);
+/**
+ * @brief changes the current working directory
+ * 
+ * @param path the path to the new working directory
+*/
+void	ft_cd(char *path);
 
 #endif

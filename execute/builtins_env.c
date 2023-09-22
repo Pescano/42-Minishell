@@ -6,21 +6,20 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/09/20 17:50:38 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:12:31 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_env(void)
+void	ft_env(void)
 {
 	int	i;
 
 	i = 0;
-	while (i > g_global.n_env)
+	while (i < g_global.n_env)
 	{
-		if (printf("%s=%s\n", g_global.env[i].key, g_global.env[i].value) < 0)
-			return (-1);
+		printf("%s=%s\n", g_global.env[i].key, g_global.env[i].value);
 		i++;
 	}
 }
@@ -34,8 +33,8 @@ void	ft_export(char *str)
 	len = 0;
 	while (str[len] && str[len] != '=')
 		len++;
-	if (!str[len])
-		return (0);
+	if (!len || !str[len])
+		return ;
 	key = ft_substr(str, 0, len);
 	if (!key)
 		ft_free_error(ERROR_MALLOC);
@@ -50,10 +49,6 @@ void	ft_export(char *str)
 
 void	ft_unset(char *key)
 {
-	ft_delete_one_env(key);
-}
-
-void	ft_pwd(void)
-{
-	printf("%s\n", ft_getenv("PWD"));
+	if (ft_getenv(key))
+		ft_delete_one_env(key);
 }
