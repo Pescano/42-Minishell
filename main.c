@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 11:05:48 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:39:15 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ static void	ft_execute_minishell(char **env)
 	if (input[0])
 		add_history(input);
 //	ft_lexer(input);
+	char *test = ft_strdup("-n");
+	char *test2 = ft_strdup("adios");
+	char *a[3];
+	a[0] = test;
+	a[1] = test2;
+	a[2] = NULL;
+	ft_echo(a);
+	free(test);
+	free(test2);
 	free(input);
 }
 

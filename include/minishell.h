@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 11:07:15 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:57:09 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,46 @@ int		ft_strcmp(char *s1, char *s2);
  * @param len the number of characters copied from "start"
 */
 char	*ft_substr(char *s, unsigned int start, size_t len);
+/**
+ * @brief frees the memory of a char **
+ * 
+ * @param pptr the char ** to free
+ * @param n the number of strings inside pptr
+*/
+void	ft_freepp(void **pptr, int n);
+/**
+ * @brief frees the memory of a null terminated char **
+ * 
+ * @param pptr the string array to free
+*/
+void	ft_freevpp(void **pptr);
+/**
+ * @brief returns a null terminated char ** with each line being an environment variable
+*/
+char	**ft_format_env(void);
+/**
+ * @brief creates a new string concatenating 2 strings
+ * 
+ * @param s1 the first string
+ * @param s2 the second string
+*/
+char	*ft_strjoin(char const *s1, char const *s2);
+/**
+ * @brief appends a string to the end of another one, but stops at dstsize
+ * 
+ * @param dst the base string
+ * @param stc the string to append
+ * @param dstsize the maximum size of the resulting string
+*/
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+/**
+ * @brief overwrites the destination string with another one
+ * 
+ * @param dst the string to overwrite
+ * @param src the string to copy
+ * @param dstsize the maximum amount of characters to copy
+*/
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 // execute
 /**
@@ -196,15 +236,17 @@ void	ft_env(void);
 /**
  * @brief inserts or updates the given environment variable
  * 
- * @param str the environment variable to set in "key=value" format
+ * @param str a null terminated array with the environment variables to set in "key=value" format
+ * 
 */
-void	ft_export(char *str);
+void	ft_export(char **str);
 /**
  * @brief deletes an environment variable
  * 
- * @param key the name of the varable to remove
+ * @param key a null terminated array of strings with 
+ * the names of the variables to unset
 */
-void	ft_unset(char *key);
+void	ft_unset(char **key);
 /**
  * @brief prints the current working directory
 */
@@ -215,5 +257,12 @@ void	ft_pwd(void);
  * @param path the path to the new working directory
 */
 void	ft_cd(char *path);
+/**
+ * @brief prints strings passed as arguments
+ * 
+ * @param args a null terminated array of strings to print.
+ * if the first argument is "-n" it won't print a newline
+*/
+void	ft_echo(char **args);
 
 #endif

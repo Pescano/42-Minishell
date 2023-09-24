@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:41:57 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 19:46:33 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:56:34 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,24 @@ void	ft_free_error(char *error)
 	ft_free_all();
 	printf("%s", error);
 	exit(EXIT_FAILURE);
+}
+
+void	ft_freepp(void **pptr, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+		free(pptr[i++]);
+	free(pptr);
+}
+
+void	ft_freevpp(void **pptr)
+{
+	int	i;
+
+	i = 0;
+	while (pptr[i])
+		free(pptr[i++]);
+	free(pptr);
 }

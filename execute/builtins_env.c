@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/09/21 17:12:31 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:26:37 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,39 @@ void	ft_env(void)
 	}
 }
 
-void	ft_export(char *str)
+void	ft_export(char **str)
 {
 	char	*key;
 	char	*val;
 	int		len;
 
-	len = 0;
-	while (str[len] && str[len] != '=')
-		len++;
-	if (!len || !str[len])
-		return ;
-	key = ft_substr(str, 0, len);
-	if (!key)
-		ft_free_error(ERROR_MALLOC);
-	val = ft_substr(str, len + 1, ft_strlen(str));
-	if (!val)
+	while (*str)
 	{
-		free(key);
-		ft_free_error(ERROR_MALLOC);
+		len = 0;
+		while (str[len] && str[len] != '=')
+			len++;
+		if (!len || !str[len])
+			return ;
+		key = ft_substr(str, 0, len);
+		if (!key)
+			ft_free_error(ERROR_MALLOC);
+		val = ft_substr(str, len + 1, ft_strlen(str));
+		if (!val)
+		{
+			free(key);
+			ft_free_error(ERROR_MALLOC);
+		}
+		ft_update_env(key, val);
+		str++;
 	}
-	ft_update_env(key, val);
 }
 
-void	ft_unset(char *key)
+void	ft_unset(char **key)
 {
-	if (ft_getenv(key))
-		ft_delete_one_env(key);
+	while (*key)
+	{
+		if (ft_getenv(key))
+			ft_delete_one_env(key);
+		key++;
+	}
 }
