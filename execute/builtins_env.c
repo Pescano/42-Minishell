@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/09/22 16:26:37 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:13:08 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	ft_export(char **str)
 	while (*str)
 	{
 		len = 0;
-		while (str[len] && str[len] != '=')
+		while ((*str)[len] && (*str)[len] != '=')
 			len++;
-		if (!len || !str[len])
+		if (!len || !(*str)[len])
 			return ;
-		key = ft_substr(str, 0, len);
+		key = ft_substr((*str), 0, len);
 		if (!key)
 			ft_free_error(ERROR_MALLOC);
-		val = ft_substr(str, len + 1, ft_strlen(str));
+		val = ft_substr((*str), len + 1, ft_strlen((*str)));
 		if (!val)
 		{
 			free(key);
@@ -55,8 +55,8 @@ void	ft_unset(char **key)
 {
 	while (*key)
 	{
-		if (ft_getenv(key))
-			ft_delete_one_env(key);
+		if (ft_getenv((*key)))
+			ft_delete_one_env((*key));
 		key++;
 	}
 }

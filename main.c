@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 12:39:15 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:16:37 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ static void	ft_execute_minishell(char **env)
 {
 	char	*input;
 
-	input = readline("minishell >");
+	input = readline("minishell $ ");
 	if (!input)
 		ft_handler_ctrl_d(input);
 	if (input[0])
 		add_history(input);
-//	ft_lexer(input);
-	char *test = ft_strdup("-n");
-	char *test2 = ft_strdup("adios");
-	char *a[3];
-	a[0] = test;
-	a[1] = test2;
-	a[2] = NULL;
-	ft_echo(a);
-	free(test);
-	free(test2);
+	ft_lexer(input);
+//	char *test = ft_strdup("-n");
+//	char *test2 = ft_strdup("adios");
+//	char *a[3];
+//	a[0] = test;
+//	a[1] = test2;
+//	a[2] = NULL;
+//	ft_echo(a);
+//	free(test);
+//	free(test2);
 	free(input);
 }
 

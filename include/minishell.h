@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 17:57:09 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:53:34 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,20 @@ int		ft_lexer(char *cmd);
  * @return int 1 if the quotes are closed, 0 if not
  */
 int		ft_check_quotes(char *cmd);
+/**
+ * @brief check the syntax of the pipes
+ * 
+ * @param cmd command to check
+ * @return int 1 if the syntax is correct, 0 if not
+ */
+int		ft_check_pipes(char *cmd);
+/**
+ * @brief check the syntax of the redirections
+ * 
+ * @param cmd command to check
+ * @return int 1 if the syntax is correct, 0 if not
+ */
+int		ft_check_redir(char *cmd);
 
 // utils
 /**
@@ -200,7 +214,8 @@ void	ft_freepp(void **pptr, int n);
 */
 void	ft_freevpp(void **pptr);
 /**
- * @brief returns a null terminated char ** with each line being an environment variable
+ * @brief returns a null terminated char ** with each line 
+ * being an environment variable
 */
 char	**ft_format_env(void);
 /**
@@ -208,14 +223,6 @@ char	**ft_format_env(void);
  * 
  * @param s1 the first string
  * @param s2 the second string
-*/
-char	*ft_strjoin(char const *s1, char const *s2);
-/**
- * @brief appends a string to the end of another one, but stops at dstsize
- * 
- * @param dst the base string
- * @param stc the string to append
- * @param dstsize the maximum size of the resulting string
 */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 /**
@@ -236,7 +243,8 @@ void	ft_env(void);
 /**
  * @brief inserts or updates the given environment variable
  * 
- * @param str a null terminated array with the environment variables to set in "key=value" format
+ * @param str a null terminated array with the environment 
+ * variables to set in "key=value" format
  * 
 */
 void	ft_export(char **str);

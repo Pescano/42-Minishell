@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+         #
+#    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/09/22 12:22:09 by lromero-         ###   ########.fr        #
+#    Updated: 2023/09/25 13:51:06 by paescano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		handlers/handler_env.c inits/init_minishell.c inits/init_env.c \
 		execute/builtins_env.c execute/builtins_dir.c utils/ft_free_all.c \
 		utils/ft_strcmp.c utils/ft_strdup.c utils/ft_signals_handler.c utils/ft_split.c \
-		utils/ft_substr.c lexer/lexer.c lexer/check_quotes.c execute/builtins_e.c
+		utils/ft_substr.c execute/builtins_e.c lexer/lexer.c lexer/check_quotes.c \
+		lexer/check_pipes.c lexer/check_redir.c
 
 INCLUDES = -I ./include
 
