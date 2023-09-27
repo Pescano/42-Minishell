@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/25 13:53:34 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:23:23 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_lexer
 {
 	int				quotes_state;
 	int				pipe_state;
-	int				redir_state;
 }	t_lexer;
 
 typedef struct s_env
@@ -141,6 +140,12 @@ int		ft_lexer(char *cmd);
  * @return int 1 if the quotes are closed, 0 if not
  */
 int		ft_check_quotes(char *cmd);
+/**
+ * @brief set a new quotes state
+ * 
+ * @param c character that sets the new state
+ */
+void	ft_set_quote_state(char c);
 /**
  * @brief check the syntax of the pipes
  * 

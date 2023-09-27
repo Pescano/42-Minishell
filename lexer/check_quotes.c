@@ -6,13 +6,13 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:25:48 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/25 13:49:21 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:17:09 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_set_quote_state(char c)
+void	ft_set_quote_state(char c)
 {
 	if (c == DOUBLE_QUOTE)
 	{
