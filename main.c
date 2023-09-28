@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/25 16:16:37 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:26:45 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,26 @@ static void	ft_leaks(void)
 static void	ft_execute_minishell(char **env)
 {
 	char	*input;
+	int		i;
 
 	input = readline("minishell $ ");
 	if (!input)
 		ft_handler_ctrl_d(input);
 	if (input[0])
+	{
 		add_history(input);
-	ft_lexer(input);
-//	char *test = ft_strdup("-n");
-//	char *test2 = ft_strdup("adios");
-//	char *a[3];
-//	a[0] = test;
-//	a[1] = test2;
-//	a[2] = NULL;
-//	ft_echo(a);
-//	free(test);
-//	free(test2);
+		if (ft_lexer(input))
+		{
+			i = 0;
+			ft_parser(input);
+			while (g_global.cmd_splitted[i])
+			{
+				printf("cmd_splitted[%d]: %s\n", i, g_global.cmd_splitted[i]);
+				i++;
+			}
+			ft_freevpp((void **)g_global.cmd_splitted);
+		}
+	}
 	free(input);
 }
 

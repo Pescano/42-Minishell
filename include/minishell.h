@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/27 12:23:23 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:23:26 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,17 @@ enum e_tokens {
 };
 
 // Structs
+typedef struct s_cmd
+{
+	int				in;
+	int				out;
+	char			**cmds;
+	char			**fd_in;
+	char			**fd_in2;
+	char			**fd_out;
+	char			**fd_out2;
+}	t_cmd;
+
 typedef struct s_lexer
 {
 	int				quotes_state;
@@ -66,11 +77,12 @@ typedef struct s_env
 typedef struct s_global
 {
 	int		exit_status;
-	int		fd_in;
-	int		fd_out;
+	int		n_cmd;
 	int		n_env;
+	char	**cmd_splitted;
 	t_lexer	lexer;
 	t_env	*env;
+	t_cmd	*cmd;
 }	t_global;
 
 // Global variables
@@ -161,6 +173,23 @@ int		ft_check_pipes(char *cmd);
  */
 int		ft_check_redir(char *cmd);
 
+// parser
+/**
+ * @brief parses the command and modifies the global variables
+ * 
+ * @param input command to parse
+ */
+void	ft_parser(char *input);
+/**
+ * @brief split the command with double quotes
+ * 
+ * @param input command to split
+ * @param i position of the command
+ * @param quote type of quote
+ * @return char* command splitted
+ */
+char	*ft_split_quotes(char *input, int *i, char quote);
+
 // utils
 /**
  * @brief frees all the allocated memory
@@ -238,6 +267,13 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
  * @param dstsize the maximum amount of characters to copy
 */
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+/**
+ * @brief returns the length of a null terminated char **
+ * 
+ * @param pp pointer to the string array
+ * @return int size of the string array
+ */
+int		ft_pplen(char **pp);
 
 // execute
 /**
