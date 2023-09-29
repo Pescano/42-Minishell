@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 19:11:46 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 19:22:30 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:47:07 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_split_quotes(char *input, int *i, char quote)
 		k++;
 	}
 	arg[j] = quote;
+	arg[j + 1] = '\0';
 	*i += len;
 	return (arg);
 }

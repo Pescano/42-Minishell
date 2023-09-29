@@ -6,19 +6,20 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:46 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 18:22:38 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:57:32 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	wordlen_perso(char *prompt, int i)
+static int	ft_arglen(char *input, int i)
 {
 	int	len;
 
 	len = 0;
-	while (prompt[i] && prompt[i] != ' ' && prompt[i] != '<' && prompt[i] != '>'
-		&& prompt[i] != '|')
+	while (input[i] && input[i] != SPACES && input[i] != LESS
+		&& input[i] != GREAT && input[i] != PIPE && input[i] != DOUBLE_QUOTE
+		&& input[i] != SINGLE_QUOTE)
 	{
 		len++;
 		i++;
@@ -26,30 +27,23 @@ int	wordlen_perso(char *prompt, int i)
 	return (len);
 }
 
-char	*ft_noq(char *prompt, int i)
+char	*ft_split_normal(char *input, int *i)
 {
-	char	*aux;
+	char	*arg;
+	int		x;
 	int		j;
 	int		len;
 
-	len = wordlen_perso(prompt, i);
-	aux = ft_calloc(len + 2, sizeof(char));
-	j = 0;
-	while (prompt[i] != ' ' && prompt[i] != '"'
-		&& prompt[i] != '\'' && prompt[i] != '\0')
+	len = ft_arglen(input, *i);
+	arg = (char *)malloc(sizeof(char) * (len + 1));
+	j = *i;
+	x = 0;
+	while (j < len + *i)
 	{
-		aux[j] = prompt[i];
-		i++;
+		arg[x] = input[j];
+		x++;
 		j++;
 	}
-	return (aux);
-}
-
-char	*ft_call_noq(char *prompt, int *i)
-{
-	char	*aux;
-
-	aux = ft_noq(prompt, *i);
-	*i += strlen(aux);
-	return (aux);
+	*i += len;
+	return (arg);
 }

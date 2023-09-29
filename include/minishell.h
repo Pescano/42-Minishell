@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 19:23:26 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:53:08 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,38 @@ void	ft_parser(char *input);
  * @return char* command splitted
  */
 char	*ft_split_quotes(char *input, int *i, char quote);
+/**
+ * @brief split the command with pipes
+ * 
+ * @param input command to split
+ * @param i position of the command
+ * @return char* command splitted
+ */
+char	*ft_split_pipe(char *input, int *i);
+/**
+ * @brief split the command with redirections of input
+ * 
+ * @param input command to split 
+ * @param i position of the command
+ * @return char* command splitted
+ */
+char	*ft_split_redin(char *input, int *i);
+/**
+ * @brief split the command with redirections of output
+ * 
+ * @param input command to split 
+ * @param i position of the command
+ * @return char* command splitted
+ */
+char	*ft_split_redout(char *input, int *i);
+/**
+ * @brief split the command without spacial characters
+ * 
+ * @param input command to split
+ * @param i position of the command
+ * @return char* command splitted0
+ */
+char	*ft_split_normal(char *input, int *i);
 
 // utils
 /**

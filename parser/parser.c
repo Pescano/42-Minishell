@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:47:13 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 19:26:03 by paescano         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:53:45 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,14 @@ static void	ft_splitcmd(char *input)
 			arg = ft_split_quotes(input, &i, DOUBLE_QUOTE);
 		else if (input[i] == SINGLE_QUOTE)
 			arg = ft_split_quotes(input, &i, SINGLE_QUOTE);
-		/*else if (input[i] == LESS)
+		else if (input[i] == LESS)
 			arg = ft_split_redin(input, &i);
 		else if (input[i] == GREAT)
 			arg = ft_split_redout(input, &i);
 		else if (input[i] == PIPE)
 			arg = ft_split_pipe(input, &i);
 		else
-			arg = ft_split_normal(input, &i);*/
-		else
-		{
-			arg = ft_strdup("test");
-			i++;
-		}
+			arg = ft_split_normal(input, &i);
 		ft_add_cmd(arg);
 	}
 }

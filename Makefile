@@ -6,7 +6,7 @@
 #    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/09/28 19:10:52 by paescano         ###   ########.fr        #
+#    Updated: 2023/09/29 16:54:16 by paescano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		utils/ft_strcmp.c utils/ft_strdup.c utils/ft_signals_handler.c utils/ft_split.c \
 		utils/ft_substr.c execute/builtins_e.c lexer/lexer.c lexer/check_quotes.c \
 		lexer/check_pipes.c lexer/check_redir.c parser/parser.c utils/ft_pplen.c \
-		parser/ft_split_quotes.c 
+		parser/ft_split_quotes.c parser/ft_split_pipe.c parser/ft_split_redir.c \
+		parser/ft_split_normal.c
 
 INCLUDES = -I ./include
 
