@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/29 16:53:08 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:30:41 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_env
 typedef struct s_global
 {
 	int		exit_status;
-	int		n_cmd;
 	int		n_env;
+	int		n_cmds;
 	char	**cmd_splitted;
 	t_lexer	lexer;
 	t_env	*env;
@@ -136,6 +136,24 @@ void	ft_delete_one_env(char *key);
  * @param key key of the variable to search
 */
 char	*ft_getenv(char *key);
+/**
+ * @brief initializes the command structure
+ * 
+ */
+void	ft_init_cmd(void);
+/**
+ * @brief frees the command structure
+ * 
+ */
+void	ft_free_cmd(void);
+/**
+ * @brief adds a redirection to the command structure
+ * 
+ * @param redir redirection to add
+ * @param arg argument of the redirection
+ * @param i variable to know if it is an single or double redirection
+ */
+void	ft_add_redir_cmd(char *redir, char *arg, int i);
 
 // lexer 
 /**
@@ -181,38 +199,11 @@ int		ft_check_redir(char *cmd);
  */
 void	ft_parser(char *input);
 /**
- * @brief split the command with double quotes
+ * @brief splits the command into several commands by the pipes
  * 
  * @param input command to split
- * @param i position of the command
- * @param quote type of quote
- * @return char* command splitted
  */
-char	*ft_split_quotes(char *input, int *i, char quote);
-/**
- * @brief split the command with pipes
- * 
- * @param input command to split
- * @param i position of the command
- * @return char* command splitted
- */
-char	*ft_split_pipe(char *input, int *i);
-/**
- * @brief split the command with redirections of input
- * 
- * @param input command to split 
- * @param i position of the command
- * @return char* command splitted
- */
-char	*ft_split_redin(char *input, int *i);
-/**
- * @brief split the command with redirections of output
- * 
- * @param input command to split 
- * @param i position of the command
- * @return char* command splitted
- */
-char	*ft_split_redout(char *input, int *i);
+void	ft_split_pipe(char *input);
 /**
  * @brief split the command without spacial characters
  * 
@@ -221,6 +212,26 @@ char	*ft_split_redout(char *input, int *i);
  * @return char* command splitted0
  */
 char	*ft_split_normal(char *input, int *i);
+/**
+ * @brief splits the command by the redirections
+ * 
+ * @param input command to split
+ */
+char	**ft_split_redir(char *input);
+/**
+ * @brief expands the environment variables
+ * 
+ * @param cmd command to expand
+ * @return char** command expanded
+ */
+char	**ft_expand_vars(char **cmd);
+/**
+ * @brief expand the quotes from the command
+ * 
+ * @param cmd command to expand the quotes
+ * @return char** command without quotes
+ */
+char	**ft_expand_quotes(char **cmd);
 
 // utils
 /**
@@ -306,6 +317,38 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
  * @return int size of the string array
  */
 int		ft_pplen(char **pp);
+/**
+ * @brief adds a string to a null terminated char **
+ * 
+ * @param arg string to add
+ * @param strs string array
+ * @return char** string array with the new string
+ */
+char	**ft_add_pp(char *arg, char **strs);
+/**
+ * @brief replace environment variables with their values
+ * 
+ * @param str command to replace
+ * @param start before the dollar sign
+ * @param end after the variable name
+ * @param mid value of the variable
+ * @return char* command with the variable replaced
+ */
+char	*ft_replace_str(char *str, char *start, char *end, char *mid);
+/**
+ * @brief converts an integer to a string
+ * 
+ * @param n integer to convert
+ * @return char* converted integer
+ */
+char	*ft_itoa(int n);
+/**
+ * @brief checks if a character is a digit or aplhabetical
+ * 
+ * @param c character to check 
+ * @return int returns 1 if the character is a digit or alphabetical, 0 if not
+ */
+int		ft_isalnum(int c);
 
 // execute
 /**

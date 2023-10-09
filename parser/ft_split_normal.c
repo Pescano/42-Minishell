@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:46 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/29 16:57:32 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:47:00 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 
 static int	ft_arglen(char *input, int i)
 {
-	int	len;
+	int		len;
+	char	quote;
 
 	len = 0;
-	while (input[i] && input[i] != SPACES && input[i] != LESS
-		&& input[i] != GREAT && input[i] != PIPE && input[i] != DOUBLE_QUOTE
-		&& input[i] != SINGLE_QUOTE)
+	quote = '\0';
+	while (input[i])
 	{
+		if (input[i] == DOUBLE_QUOTE || input[i] == SINGLE_QUOTE)
+		{
+			if (quote == '\0')
+				quote = input[i];
+			else if (quote == input[i])
+				quote = '\0';
+		}
+		else if (quote == '\0' && (input[i] == SPACES || input[i] == LESS
+				|| input[i] == GREAT))
+			break ;
 		len++;
 		i++;
 	}
@@ -44,6 +54,7 @@ char	*ft_split_normal(char *input, int *i)
 		x++;
 		j++;
 	}
+	arg[x] = '\0';
 	*i += len;
 	return (arg);
 }

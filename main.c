@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 19:26:45 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:42:35 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,69 @@ static void	ft_leaks(void)
 	system("leaks minishell");
 }
 
-static void	ft_execute_minishell(char **env)
+//testing
+static void	ft_print_cmds(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < g_global.n_cmds)
+	{
+		j = 0;
+		if (g_global.cmd[i].cmds != NULL)
+		{
+			while (g_global.cmd[i].cmds[j])
+			{
+				printf("cmd[%d]: %s\n", i, g_global.cmd[i].cmds[j]);
+				j++;
+			}
+		}
+		j = 0;
+		if (g_global.cmd[i].fd_in != NULL)
+		{
+			while (g_global.cmd[i].fd_in[j])
+			{
+				printf("fd_in[%d]: %s\n", i, g_global.cmd[i].fd_in[j]);
+				j++;
+			}
+		}
+		j = 0;
+		if (g_global.cmd[i].fd_in2 != NULL)
+		{
+			while (g_global.cmd[i].fd_in2[j])
+			{
+				printf("fd_in2[%d]: %s\n", i, g_global.cmd[i].fd_in2[j]);
+				j++;
+			}
+		}
+		j = 0;
+		if (g_global.cmd[i].fd_out != NULL)
+		{
+			while (g_global.cmd[i].fd_out[j])
+			{
+				printf("fd_out[%d]: %s\n", i, g_global.cmd[i].fd_out[j]);
+				j++;
+			}
+		}
+		j = 0;
+		if (g_global.cmd[i].fd_out2 != NULL)
+		{
+			while (g_global.cmd[i].fd_out2[j])
+			{
+				printf("fd_out2[%d]: %s\n", i, g_global.cmd[i].fd_out2[j]);
+				j++;
+			}
+		}
+		printf("in: %d\n", g_global.cmd[i].in);
+		printf("out %d\n", g_global.cmd[i].out);
+		i++;
+	}
+}
+
+static void	ft_execute_minishell(void)
 {
 	char	*input;
-	int		i;
 
 	input = readline("minishell $ ");
 	if (!input)
@@ -31,14 +90,9 @@ static void	ft_execute_minishell(char **env)
 		add_history(input);
 		if (ft_lexer(input))
 		{
-			i = 0;
 			ft_parser(input);
-			while (g_global.cmd_splitted[i])
-			{
-				printf("cmd_splitted[%d]: %s\n", i, g_global.cmd_splitted[i]);
-				i++;
-			}
-			ft_freevpp((void **)g_global.cmd_splitted);
+			ft_print_cmds();
+			ft_free_cmd();
 		}
 	}
 	free(input);
@@ -48,12 +102,13 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	atexit(ft_leaks);
+	g_global.exit_status = 25;
 	if (argc != 1)
 		exit(0);
 	ft_init_minishell(env);
 	while (1)
 	{
-		ft_execute_minishell(env);
+		ft_execute_minishell();
 	}
 	ft_free_all();
 	return (0);

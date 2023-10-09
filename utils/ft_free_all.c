@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:41:57 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/28 19:12:14 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:43:22 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ft_free_error(char *error)
 	ft_free_all();
 	if (g_global.cmd_splitted)
 		ft_freevpp((void **)g_global.cmd_splitted);
+	if (g_global.cmd)
+		ft_free_cmd();
 	printf("%s", error);
 	exit(EXIT_FAILURE);
 }

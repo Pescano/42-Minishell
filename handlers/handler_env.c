@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:36:27 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/21 16:55:49 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:24:32 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	ft_insert_env(char *key, char *value)
 	i = 0;
 	g_global.n_env++;
 	tmp = (t_env *)malloc(sizeof(t_env) * g_global.n_env + 1);
-	tmp[g_global.n_env].key = NULL;
 	if (!tmp)
 		ft_free_error(ERROR_MALLOC);
+	tmp[g_global.n_env].key = NULL;
 	while (i < g_global.n_env - 2)
 	{
 		tmp[i].key = g_global.env[i].key;
