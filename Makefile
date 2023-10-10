@@ -6,7 +6,7 @@
 #    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/06 17:19:28 by paescano         ###   ########.fr        #
+#    Updated: 2023/10/10 16:13:54 by paescano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,15 @@ B = "\033[34m"
 X = "\033[0m"
 
 CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-		handlers/handler_env.c handlers/handler_cmd.c inits/init_minishell.c inits/init_env.c \
-		execute/builtins_env.c execute/builtins_dir.c utils/ft_free_all.c \
-		utils/ft_strcmp.c utils/ft_strdup.c utils/ft_signals_handler.c utils/ft_split.c \
-		utils/ft_substr.c utils/ft_pplen.c utils/ft_add_pp.c utils/ft_itoa.c \
-		utils/ft_replace_str.c utils/ft_isalnum.c execute/builtins_e.c lexer/lexer.c \
-		lexer/check_quotes.c lexer/check_pipes.c lexer/check_redir.c parser/parser.c \
-		parser/ft_split_pipe.c parser/ft_split_normal.c parser/ft_split_redir.c \
-		parser/ft_expand_vars.c parser/ft_expand_quotes.c\
+		handlers/handler_env.c handlers/handler_cmd.c inits/init_minishell.c \
+		inits/init_env.c execute/builtins_env.c execute/builtins_dir.c \
+		execute/builtins_e.c utils/ft_free_all.c utils/ft_strcmp.c utils/ft_strdup.c \
+		utils/ft_signals_handler.c utils/ft_split.c utils/ft_substr.c \
+		utils/ft_pplen.c utils/ft_add_pp.c utils/ft_itoa.c utils/ft_replace_str.c \
+		utils/ft_isalnum.c lexer/lexer.c lexer/check_quotes.c lexer/check_pipes.c \
+		lexer/check_redir.c parser/parser.c parser/ft_split_pipe.c \
+		parser/ft_split_normal.c parser/ft_split_redir.c parser/ft_expand_vars.c \
+		parser/ft_expand_quotes.c \
 
 INCLUDES = -I ./include
 

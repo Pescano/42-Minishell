@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/09 17:42:35 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:16:12 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static void	ft_execute_minishell(void)
 		if (ft_lexer(input))
 		{
 			ft_parser(input);
+			//ft_execute();
 			ft_print_cmds();
 			ft_free_cmd();
 		}
@@ -102,7 +103,6 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	atexit(ft_leaks);
-	g_global.exit_status = 25;
 	if (argc != 1)
 		exit(0);
 	ft_init_minishell(env);

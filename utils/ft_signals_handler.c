@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:19:39 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/22 11:08:52 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:21:38 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_handler_ctrl_c(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
+		g_global.exit_status = 1;
 	}
 }
 
@@ -30,5 +31,5 @@ void	ft_handler_ctrl_d(char *input)
 	free(input);
 	ft_free_all();
 	write(1, "exit\n", 5);
-	exit(0);
+	exit(g_global.exit_status);
 }
