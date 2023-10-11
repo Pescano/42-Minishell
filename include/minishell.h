@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/09 13:30:41 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:49:42 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,6 +349,12 @@ char	*ft_itoa(int n);
  * @return int returns 1 if the character is a digit or alphabetical, 0 if not
  */
 int		ft_isalnum(int c);
+/**
+ * @brief sets the prompt
+ * 
+ * @return char* prompt with pwd and user
+ */
+char	*ft_set_prompt(void);
 
 // execute
 /**

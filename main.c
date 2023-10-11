@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/10 17:16:12 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:57:30 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ static void	ft_print_cmds(void)
 static void	ft_execute_minishell(void)
 {
 	char	*input;
+	char	*prompt;
 
-	input = readline("minishell $ ");
+	prompt = ft_set_prompt();
+	input = readline(prompt);
 	if (!input)
 		ft_handler_ctrl_d(input);
 	if (input[0])
@@ -96,6 +98,7 @@ static void	ft_execute_minishell(void)
 			ft_free_cmd();
 		}
 	}
+	free(prompt);
 	free(input);
 }
 
