@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/11 12:49:42 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:06:46 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,21 +301,6 @@ char	**ft_format_env(void);
  * @param s1 the first string
  * @param s2 the second string
 */
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-/**
- * @brief overwrites the destination string with another one
- * 
- * @param dst the string to overwrite
- * @param src the string to copy
- * @param dstsize the maximum amount of characters to copy
-*/
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-/**
- * @brief returns the length of a null terminated char **
- * 
- * @param pp pointer to the string array
- * @return int size of the string array
- */
 int		ft_pplen(char **pp);
 /**
  * @brief adds a string to a null terminated char **
@@ -355,6 +340,20 @@ int		ft_isalnum(int c);
  * @return char* prompt with pwd and user
  */
 char	*ft_set_prompt(void);
+/**
+ *  @brief turns str into long int
+ * 
+ * @param str the string to convert
+*/
+long	ft_atoi_long(const char *str);
+/**
+ * @brief searches the route for the executable for the given command,
+ * and replaces the command in the pointer array with the full route
+ * 
+ * @param com a null terminated string array,
+ * the command being the first element
+*/
+char	**ft_com_path(char **com);
 
 // execute
 /**

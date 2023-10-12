@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/09/25 16:13:08 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:04:54 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,39 @@ void	ft_env(void)
 	}
 }
 
+static void	ft_print_export(void)
+{
+	int	i;
+	int	j;
+	int	prev;
+	int	curr;
+
+	i = 0;
+	curr = 0;
+	prev = -1;
+	while (i++ < g_global.n_env)
+	{
+		j = 0;
+		while (j < g_global.n_env)
+		{
+			if (curr >= 0 && curr != j
+				&& ft_strcmp(g_global.env[j].key, g_global.env[curr].key < 0)
+				&& (prev < 0 || (j != prev
+				&& ft_strcmp(g_global.env[j].key, g_global.env[prev].key) > 0)))
+				curr = j;
+			j++;
+		}
+	}
+}
+
 void	ft_export(char **str)
 {
 	char	*key;
 	char	*val;
 	int		len;
 
+	if (!*str)
+		ft_print_export();
 	while (*str)
 	{
 		len = 0;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
+#    By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/11 12:51:28 by paescano         ###   ########.fr        #
+#    Updated: 2023/10/12 18:02:10 by lromero-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		utils/ft_isalnum.c utils/ft_set_prompt.c lexer/lexer.c lexer/check_quotes.c \
 		lexer/check_pipes.c lexer/check_redir.c parser/parser.c parser/ft_split_pipe.c \
 		parser/ft_split_normal.c parser/ft_split_redir.c parser/ft_expand_vars.c \
-		parser/ft_expand_quotes.c \
+		parser/ft_expand_quotes.c utils/ft_atoi_long.c utils/ft_com_path.c\
 
 INCLUDES = -I ./include
 
