@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/12 18:06:46 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:25:22 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,8 +359,9 @@ char	**ft_com_path(char **com);
 /**
  * @brief prints the environment variables
  * 
+ * @param arg the first argument (it is needed to throw an error)
 */
-void	ft_env(void);
+int	ft_env(char *arg);
 /**
  * @brief inserts or updates the given environment variable
  * 
@@ -368,30 +369,30 @@ void	ft_env(void);
  * variables to set in "key=value" format
  * 
 */
-void	ft_export(char **str);
+int	ft_export(char **str);
 /**
  * @brief deletes an environment variable
  * 
  * @param key a null terminated array of strings with 
  * the names of the variables to unset
 */
-void	ft_unset(char **key);
+int	ft_unset(char **key);
 /**
  * @brief prints the current working directory
 */
-void	ft_pwd(void);
+int	ft_pwd(void);
 /**
  * @brief changes the current working directory
  * 
  * @param path the path to the new working directory
 */
-void	ft_cd(char *path);
+int	ft_cd(char *path);
 /**
  * @brief prints strings passed as arguments
  * 
  * @param args a null terminated array of strings to print.
  * if the first argument is "-n" it won't print a newline
 */
-void	ft_echo(char **args);
+int	ft_echo(char **args);
 
 #endif

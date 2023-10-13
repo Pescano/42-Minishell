@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:41:57 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/02 18:43:22 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:33:22 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_free_error(char *error)
 		ft_freevpp((void **)g_global.cmd_splitted);
 	if (g_global.cmd)
 		ft_free_cmd();
+	if (!access("tmp.txt", F_OK))
+		unlink("tmp.txt");
 	printf("%s", error);
 	exit(EXIT_FAILURE);
 }
