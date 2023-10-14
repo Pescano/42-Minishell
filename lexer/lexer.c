@@ -6,23 +6,24 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:06:49 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/12 17:57:59 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:45:13 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int  ft_only_space(char *cmd)
+static int	ft_only_space(char *cmd)
 {
-    int i;
-    i = 0;
-    while (cmd[i])
-    {
-        if (cmd[i] != SPACES && cmd[i] != TABS)
-            return (1);
-        i++;
-    }
-    return (0);
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] != SPACES && cmd[i] != TABS)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 static void	ft_init_lexer(void)
@@ -34,7 +35,7 @@ static void	ft_init_lexer(void)
 int	ft_lexer(char *cmd)
 {
 	if (!ft_only_space(cmd))
-        return (0);
+		return (0);
 	ft_init_lexer();
 	if (!ft_check_quotes(cmd))
 	{

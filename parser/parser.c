@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:47:13 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/09 13:42:28 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:44:12 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	ft_parser(char *input)
 	ft_init_cmd();
 	ft_set_up_cmd();
 	ft_freevpp((void **)g_global.cmd_splitted);
+	g_global.cmd_splitted = NULL;
 }

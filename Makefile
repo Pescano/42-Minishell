@@ -6,7 +6,7 @@
 #    By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/13 13:09:11 by lromero-         ###   ########.fr        #
+#    Updated: 2023/10/14 12:06:41 by lromero-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		lexer/check_pipes.c lexer/check_redir.c parser/parser.c parser/ft_split_pipe.c \
 		parser/ft_split_normal.c parser/ft_split_redir.c parser/ft_expand_vars.c \
 		parser/ft_expand_quotes.c utils/ft_atoi_long.c utils/ft_com_path.c \
-		execute/builtins_export.c\
+		execute/builtins_export.c utils/ft_finish.c utils/ft_print_error.c \
+		utils/ft_set_fds.c handlers/handler_exec.c execute/exe_cve.c \
+		utils/ft_heredoc.c utils/ft_format_env.c
 
 INCLUDES = -I ./include
 

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minishell.c                                   :+:      :+:    :+:   */
+/*   ft_print_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 16:12:01 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/13 17:08:37 by lromero-         ###   ########.fr       */
+/*   Created: 2023/10/13 17:23:10 by lromero-          #+#    #+#             */
+/*   Updated: 2023/10/14 13:43:52 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_init_signals(void)
+void	ft_print_error(char *error, char *str)
 {
-	signal(SIGINT, ft_handler_ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
-}
+	int	fd;
 
-void	ft_init_minishell(char **env)
-{
-	ft_init_signals();
-	ft_init_env(env);
-	g_global.exit_status = 0;
-	g_global.t_stdin = -1;
-	g_global.t_stdout = -1;
+	fd = dup(STDOUT_FILENO);
+	dup2(STDERR_FILENO, STDOUT_FILENO);
+	if (!str)
+		printf("%s", error);
+	else
+		printf("%s%s", str, error);
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:16:34 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/13 11:28:02 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:36:03 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,17 @@ static void	ft_select_exec(int i)
 		else if (ft_strcmp(g_global.cmd[i].cmds[0], "exit") == 0)
 			g_global.exit_status = ft_exit(g_global.cmd[i].cmds + 1);
 		else
-			g_global.exit_status = ft_exec();
+			ft_exe_one();
 	}
 }
 
-void	single_command()
+void	ft_single_command(void)
 {
-	
+	if (ft_set_fds(0))
+	{
+		g_global.exit_status = 1;
+		return ;
+	}
+	ft_select_exec(0);
+	ft_reset_fds();
 }

@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/13 13:08:36 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:55:18 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_env(char *arg)
 	i = 0;
 	if (arg)
 	{
-		printf("env: ");
-		printf(ERROR_FILE, arg);
+		ft_print_error("env: ", NULL);
+		ft_print_error(ERROR_FILE, arg);
 		return (127);
 	}
 	while (i < g_global.n_env)

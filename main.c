@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/11 12:57:30 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:41:56 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_leaks(void)
 	system("leaks minishell");
 }
 
-//testing
+//testing//ft_print_cmds();
 static void	ft_print_cmds(void)
 {
 	int	i;
@@ -85,6 +85,7 @@ static void	ft_execute_minishell(void)
 
 	prompt = ft_set_prompt();
 	input = readline(prompt);
+	free(prompt);
 	if (!input)
 		ft_handler_ctrl_d(input);
 	if (input[0])
@@ -93,12 +94,11 @@ static void	ft_execute_minishell(void)
 		if (ft_lexer(input))
 		{
 			ft_parser(input);
-			//ft_execute();
-			ft_print_cmds();
+			if (g_global.n_cmds == 1)
+				ft_single_command();
 			ft_free_cmd();
 		}
 	}
-	free(prompt);
 	free(input);
 }
 

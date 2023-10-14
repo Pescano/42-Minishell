@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/13 11:25:22 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:39:56 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_global
 	int		exit_status;
 	int		n_env;
 	int		n_cmds;
+	int		t_stdin;
+	int		t_stdout;
 	char	**cmd_splitted;
 	t_lexer	lexer;
 	t_env	*env;
@@ -154,6 +156,10 @@ void	ft_free_cmd(void);
  * @param i variable to know if it is an single or double redirection
  */
 void	ft_add_redir_cmd(char *redir, char *arg, int i);
+/**
+ * 
+*/
+void	ft_single_command(void);
 
 // lexer 
 /**
@@ -354,6 +360,34 @@ long	ft_atoi_long(const char *str);
  * the command being the first element
 */
 char	**ft_com_path(char **com);
+/**
+ * @brief reads input in case of a heredoc and stores it in a tmp file
+ * 
+ * @param end a null terminated string array with heredoc delimiters
+*/
+int		ft_heredoc(char **end);
+/**
+ * @brief if stdin or stdout has been replaced, uses dup2 to reassign
+ * them from a saved file descriptor
+*/
+void	ft_reset_fds(void);
+/**
+ * @brief checks heredoc, then the input files, and after that replaces
+ * stdin or stdout if needed for redirections
+ * @param n the index for the command we're doing this for
+*/
+int		ft_set_fds(int n);
+/**
+ * @brief uses dup2 to replace stdout with stderr and prints
+ * an error before restoring stdout
+ * @param error the error message
+ * @param str an extra string in case it's needed
+*/
+void	ft_print_error(char *error, char *str);
+/**
+ * 
+*/
+void	ft_finish(int i);
 
 // execute
 /**
@@ -361,7 +395,7 @@ char	**ft_com_path(char **com);
  * 
  * @param arg the first argument (it is needed to throw an error)
 */
-int	ft_env(char *arg);
+int		ft_env(char *arg);
 /**
  * @brief inserts or updates the given environment variable
  * 
@@ -369,30 +403,38 @@ int	ft_env(char *arg);
  * variables to set in "key=value" format
  * 
 */
-int	ft_export(char **str);
+int		ft_export(char **str);
 /**
  * @brief deletes an environment variable
  * 
  * @param key a null terminated array of strings with 
  * the names of the variables to unset
 */
-int	ft_unset(char **key);
+int		ft_unset(char **key);
 /**
  * @brief prints the current working directory
 */
-int	ft_pwd(void);
+int		ft_pwd(void);
 /**
  * @brief changes the current working directory
  * 
  * @param path the path to the new working directory
 */
-int	ft_cd(char *path);
+int		ft_cd(char *path);
 /**
  * @brief prints strings passed as arguments
  * 
  * @param args a null terminated array of strings to print.
  * if the first argument is "-n" it won't print a newline
 */
-int	ft_echo(char **args);
+int		ft_echo(char **args);
+/**
+ * 
+*/
+int		ft_exit(char **n);
+/**
+ * 
+*/
+void	ft_exe_one(void);
 
 #endif

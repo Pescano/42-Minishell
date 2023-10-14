@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:41:11 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/13 13:08:26 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:45:51 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ int	ft_export(char **str)
 		while ((*str)[len] && (*str)[len] != '=')
 			len++;
 		if (!len || !(*str)[len])
-			return ;
+			return (0);
 		key = ft_substr((*str), 0, len);
 		if (!key)
 			ft_free_error(ERROR_MALLOC);
 		val = ft_substr((*str), len + 1, ft_strlen((*str)));
 		if (!val)
-			return (free(key),ft_free_error(ERROR_MALLOC),  1);
+			return (free(key), ft_free_error(ERROR_MALLOC), 1);
 		ft_update_env(key, val);
 		str++;
 	}
