@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:47:13 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/14 13:44:12 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:19:50 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_set_up_cmd(void)
 		j = 0;
 		while (tmp[j])
 		{
-			if (ft_is_redir(tmp[j]))
+			if (ft_is_redir(tmp[j]) && tmp[j][0] != '\0')
 			{
 				ft_add_redir_cmd(tmp[j], strdup(tmp[j + 1]), i);
 				j++;
@@ -63,6 +63,9 @@ static void	ft_set_up_cmd(void)
 
 void	ft_parser(char *input)
 {
+	int	i;
+
+	i = 0;
 	ft_split_pipe(input);
 	ft_init_cmd();
 	ft_set_up_cmd();

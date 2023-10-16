@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/14 13:41:56 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:18:44 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	ft_print_cmds(void)
 				j++;
 			}
 		}
+		printf("cmd len: %d\n", ft_pplen(g_global.cmd[i].cmds));
 		j = 0;
 		if (g_global.cmd[i].fd_in != NULL)
 		{
@@ -94,6 +95,7 @@ static void	ft_execute_minishell(void)
 		if (ft_lexer(input))
 		{
 			ft_parser(input);
+			//ft_print_cmds();
 			if (g_global.n_cmds == 1)
 				ft_single_command();
 			ft_free_cmd();

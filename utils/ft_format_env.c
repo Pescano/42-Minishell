@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:48:54 by lromero-          #+#    #+#             */
-/*   Updated: 2023/09/22 18:14:44 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:53:11 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	**ft_format_env(void)
 	{
 		aux = ft_strjoin(g_global.env[i].key, "=");
 		if (!aux)
-			return (ft_freepp(re_env, i), NULL);
+			return (ft_freepp((void **)re_env, i), NULL);
 		re_env[i] = ft_strjoin(aux, g_global.env[i].value);
 		free(aux);
 		if (!re_env)
-			return (ft_freepp(re_env, i), NULL);
+			return (ft_freepp((void **)re_env, i), NULL);
 		i++;
 	}
 	return (re_env);
