@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:53:08 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 17:16:06 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:45:26 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	**ft_split(char *s, char c)
 	size_t	lwords;
 	size_t	i;
 
+	if (!s)
+		return (NULL);
 	nwords = ft_num_words(s, c);
 	strings = (char **)malloc(sizeof(char *) * (nwords + 1));
 	if (!strings)

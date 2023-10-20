@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:17:14 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/14 13:43:43 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:27:15 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_infile(int n)
 	i = 0;
 	while (g_global.cmd[n].fd_in && g_global.cmd[n].fd_in[i])
 	{
-		if (!access(g_global.cmd[n].fd_in[i], R_OK))
+		if (access(g_global.cmd[n].fd_in[i], R_OK))
 		{
 			ft_print_error(ERROR_FILE, g_global.cmd[n].fd_in[i]);
 			close(fd);
@@ -32,7 +32,8 @@ static int	ft_infile(int n)
 	}
 	if (g_global.cmd[n].in == 1)
 		return (fd);
-	close(fd);
+	if (ft_pplen(g_global.cmd[n].fd_in2))
+		close(fd);
 	return (open(g_global.cmd[n].fd_in[i - 1], O_RDONLY));
 }
 
@@ -100,7 +101,7 @@ void	ft_reset_fds(void)
 	}
 	if (g_global.t_stdout >= 0)
 	{
-		dup2(g_global.t_stdout, STDIN_FILENO);
+		dup2(g_global.t_stdout, STDOUT_FILENO);
 		close(g_global.t_stdout);
 		g_global.t_stdout = -1;
 	}

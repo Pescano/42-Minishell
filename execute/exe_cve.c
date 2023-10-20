@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:04:23 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/14 13:42:18 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:49:17 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_exe_one(void)
 		g_global.cmd[0].cmds = ft_com_path(g_global.cmd[0].cmds);
 		env = ft_format_env();
 		execve(g_global.cmd[0].cmds[0], g_global.cmd[0].cmds, env);
+		ft_print_error(ERROR_FILE, g_global.cmd[0].cmds[0]);
 		ft_freevpp((void **)env);
 		ft_finish(-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:11:59 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/12 18:12:10 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:46:38 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	**ft_com_path(char **com)
 		free(com[0]);
 		com[0] = compath;
 	}
-	ft_freevpp((void **)paths);
+	if (paths)
+		ft_freevpp((void **)paths);
 	return (com);
 }

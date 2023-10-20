@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:16:34 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/14 13:36:03 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:10:53 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void	ft_single_command(void)
 	}
 	ft_select_exec(0);
 	ft_reset_fds();
+}
+
+void	ft_multiple_cmds(void)
+{
+	
 }
