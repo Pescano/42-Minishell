@@ -27,7 +27,6 @@ static char	*ft_remove_quotes(char *cmd)
 {
 	int		i;
 	int		j;
-	char	*temp;
 
 	i = 0;
 	while (cmd[i])
