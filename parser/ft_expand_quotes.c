@@ -46,7 +46,8 @@ static char	*ft_remove_quotes(char *cmd)
 				j++;
 			cmd = ft_remove(cmd, &i, j);
 		}
-		i++;
+		else
+			i++;
 	}
 	return (cmd);
 }
