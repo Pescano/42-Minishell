@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 11:24:10 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:03:00 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ typedef struct s_env
 	char			*value;
 }	t_env;
 
+typedef struct	s_pipes
+{
+	int	p1[2];
+	int	p2[2];
+}	t_pipes;
+
 typedef struct s_global
 {
 	int		exit_status;
@@ -82,6 +88,7 @@ typedef struct s_global
 	int		t_stdin;
 	int		t_stdout;
 	char	**cmd_splitted;
+	t_pipes	pipes;
 	t_lexer	lexer;
 	t_env	*env;
 	t_cmd	*cmd;
@@ -160,6 +167,10 @@ void	ft_add_redir_cmd(char *redir, char *arg, int i);
  * 
 */
 void	ft_single_command(void);
+/**
+ * 
+*/
+void	ft_multiple_cmds(void);
 
 // lexer 
 /**
@@ -395,6 +406,10 @@ void	ft_print_error(char *error, char *str);
  * 
 */
 void	ft_finish(int i);
+/**
+ * 
+*/
+void	ft_closep(int *p, int n);
 
 // execute
 /**
@@ -443,5 +458,13 @@ int		ft_exit(char **n);
  * 
 */
 void	ft_exe_one(void);
+/**
+ * 
+*/
+void	ft_exe_more(int i);
+/**
+ * 
+*/
+void	ft_select_exec(int i);
 
 #endif
