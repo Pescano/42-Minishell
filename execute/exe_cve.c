@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:04:23 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/25 16:16:17 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:43:26 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,22 @@ void	ft_exe_more(int i)
 
 static void	set_pipes(int i)
 {
-	if (i < g_global.n_cmds - 1)
-	{
-		dup2(g_global.pipes.p1[1], STDOUT_FILENO);
-		ft_closep(g_global.pipes.p1, 1);
-	}
-	if (i > 0)
-	{
-		dup2(g_global.pipes.p2[0], STDIN_FILENO);
-		ft_closep(g_global.pipes.p2, 0);
-	}
 	if (ft_set_fds(i))
 	{
 		g_global.exit_status = 1;
 		return ;
+	}
+	if (i < g_global.n_cmds - 1)
+	{
+		if (g_global.t_stdout < 0)
+			dup2(g_global.pipes.p1[1], STDOUT_FILENO);
+		ft_closep(g_global.pipes.p1, 1);
+	}
+	if (i > 0)
+	{
+		if (g_global.t_stdin < 0)
+			dup2(g_global.pipes.p2[0], STDIN_FILENO);
+		ft_closep(g_global.pipes.p2, 0);
 	}
 }
 

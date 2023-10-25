@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 18:25:38 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/20 11:19:00 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:41:31 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static int	heredoc_loop(char *end, int fd)
 
 	while (1)
 	{
-		if (write(STDIN_FILENO, "> ", 2) < 0)
+		if (write(STDOUT_FILENO, "> ", 2) < 0)
 			return (-1);
-		line = get_next_line(0);
+		line = get_next_line(STDIN_FILENO);
 		if (line && ft_strcmp(line, end) == 10
 			&& ft_strlen(line) == ft_strlen(end) + 1)
 		{
@@ -58,7 +58,7 @@ int	ft_heredoc(char **end)
 		return (-1);
 	while (1 && end[0] && end[1])
 	{
-		if (write(STDIN_FILENO, "> ", 2) < 0)
+		if (write(STDOUT_FILENO, "> ", 2) < 0)
 			return (-1);
 		line = get_next_line(0);
 		if (line && ft_strcmp(line, *end) == 10
