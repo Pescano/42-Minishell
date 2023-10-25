@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:16:34 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 12:40:32 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:18:26 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	first_command(void)
 	g_global.pipes.p2[0] = g_global.pipes.p1[0];
 }
 
-static void middle_command(int i)
+static void	middle_command(int i)
 {
 	pid_t	pid;
 	int		wi;
@@ -100,4 +100,3 @@ void	ft_multiple_cmds(void)
 		g_global.exit_status = WEXITSTATUS(wi);
 	}
 }
-

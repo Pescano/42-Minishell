@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:21:26 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 12:39:06 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:18:55 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@
 # define ERROR_WRITE "\033[31mError\nwrite failed\033[0m\n"
 # define ERROR_ECVE ": command not found\n"
 # define ERROR_PIPE "\033[31mError\npipe failed\033[0m\n"
-
 
 #endif

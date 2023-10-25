@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:04:23 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/25 12:57:40 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:16:17 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_exe_more(int i)
 	ft_finish(127);
 }
 
-static void set_pipes(int i)
+static void	set_pipes(int i)
 {
 	if (i < g_global.n_cmds - 1)
 	{

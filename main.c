@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 12:56:53 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:18:47 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// debug leaks
-static void	ft_leaks(void)
-{
-	system("leaks minishell");
-}
 
 static void	ft_execute_minishell(void)
 {
@@ -49,7 +43,6 @@ static void	ft_execute_minishell(void)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-	//atexit(ft_leaks);
 	if (argc != 1)
 		exit(0);
 	ft_init_minishell(env);
