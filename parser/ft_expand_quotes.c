@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:44:56 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/16 13:01:44 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:23:15 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static char	*ft_remove(char *cmd, int *i, int j)
 	temp = ft_substr(cmd, *i + 1, j - *i - 1);
 	cmd = ft_replace_str(cmd, cmd + *i, cmd + j + 1, temp);
 	free(temp);
-	*i = j;
+	*i = j - 1;
 	return (cmd);
 }
 
-static char	*ft_remove_quotes(char *cmd)
+char	*ft_remove_quotes(char *cmd)
 {
 	int		i;
 	int		j;

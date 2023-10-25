@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:53:23 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/14 13:39:56 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:24:10 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,13 @@ char	**ft_expand_vars(char **cmd);
  * @return char** command without quotes
  */
 char	**ft_expand_quotes(char **cmd);
+/**
+ * @brief removes the quotes from the command
+ * 
+ * @param cmd command to remove the quotes
+ * @return char* command without quotes
+ */
+char	*ft_remove_quotes(char *cmd);
 
 // utils
 /**
