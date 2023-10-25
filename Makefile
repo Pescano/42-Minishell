@@ -6,7 +6,7 @@
 #    By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/20 11:32:21 by lromero-         ###   ########.fr        #
+#    Updated: 2023/10/25 11:08:17 by lromero-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		parser/ft_expand_quotes.c utils/ft_atoi_long.c utils/ft_com_path.c \
 		execute/builtins_export.c utils/ft_finish.c utils/ft_print_error.c \
 		utils/ft_set_fds.c handlers/handler_exec.c execute/exe_cve.c \
-		utils/ft_heredoc.c utils/ft_format_env.c
+		utils/ft_heredoc.c utils/ft_format_env.c utils/ft_close_p.c
 
 INCLUDES = -I ./include
 

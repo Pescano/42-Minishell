@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:48:50 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/16 18:18:44 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:56:53 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,67 +16,6 @@
 static void	ft_leaks(void)
 {
 	system("leaks minishell");
-}
-
-//testing//ft_print_cmds();
-static void	ft_print_cmds(void)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < g_global.n_cmds)
-	{
-		j = 0;
-		if (g_global.cmd[i].cmds != NULL)
-		{
-			while (g_global.cmd[i].cmds[j])
-			{
-				printf("cmd[%d]: %s\n", i, g_global.cmd[i].cmds[j]);
-				j++;
-			}
-		}
-		printf("cmd len: %d\n", ft_pplen(g_global.cmd[i].cmds));
-		j = 0;
-		if (g_global.cmd[i].fd_in != NULL)
-		{
-			while (g_global.cmd[i].fd_in[j])
-			{
-				printf("fd_in[%d]: %s\n", i, g_global.cmd[i].fd_in[j]);
-				j++;
-			}
-		}
-		j = 0;
-		if (g_global.cmd[i].fd_in2 != NULL)
-		{
-			while (g_global.cmd[i].fd_in2[j])
-			{
-				printf("fd_in2[%d]: %s\n", i, g_global.cmd[i].fd_in2[j]);
-				j++;
-			}
-		}
-		j = 0;
-		if (g_global.cmd[i].fd_out != NULL)
-		{
-			while (g_global.cmd[i].fd_out[j])
-			{
-				printf("fd_out[%d]: %s\n", i, g_global.cmd[i].fd_out[j]);
-				j++;
-			}
-		}
-		j = 0;
-		if (g_global.cmd[i].fd_out2 != NULL)
-		{
-			while (g_global.cmd[i].fd_out2[j])
-			{
-				printf("fd_out2[%d]: %s\n", i, g_global.cmd[i].fd_out2[j]);
-				j++;
-			}
-		}
-		printf("in: %d\n", g_global.cmd[i].in);
-		printf("out %d\n", g_global.cmd[i].out);
-		i++;
-	}
 }
 
 static void	ft_execute_minishell(void)
@@ -95,9 +34,12 @@ static void	ft_execute_minishell(void)
 		if (ft_lexer(input))
 		{
 			ft_parser(input);
-			//ft_print_cmds();
 			if (g_global.n_cmds == 1)
 				ft_single_command();
+			else if (g_global.n_cmds > 1)
+				ft_multiple_cmds();
+			if (!access("tmp.txt", F_OK))
+				unlink("tmp.txt");
 			ft_free_cmd();
 		}
 	}
@@ -107,7 +49,7 @@ static void	ft_execute_minishell(void)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	if (argc != 1)
 		exit(0);
 	ft_init_minishell(env);

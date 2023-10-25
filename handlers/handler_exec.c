@@ -6,34 +6,11 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:16:34 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/20 12:10:53 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:40:32 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_select_exec(int i)
-{
-	if (g_global.cmd[i].cmds[0] != NULL)
-	{
-		if (ft_strcmp(g_global.cmd[i].cmds[0], "echo") == 0)
-			g_global.exit_status = ft_echo(g_global.cmd[i].cmds + 1);
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "cd") == 0)
-			g_global.exit_status = ft_cd(g_global.cmd[i].cmds[1]);
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "pwd") == 0)
-			g_global.exit_status = ft_pwd();
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "export") == 0)
-			g_global.exit_status = ft_export(g_global.cmd[i].cmds + 1);
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "unset") == 0)
-			g_global.exit_status = ft_unset(g_global.cmd[i].cmds + 1);
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "env") == 0)
-			g_global.exit_status = ft_env(g_global.cmd[i].cmds[1]);
-		else if (ft_strcmp(g_global.cmd[i].cmds[0], "exit") == 0)
-			g_global.exit_status = ft_exit(g_global.cmd[i].cmds + 1);
-		else
-			ft_exe_one();
-	}
-}
 
 void	ft_single_command(void)
 {
@@ -46,7 +23,81 @@ void	ft_single_command(void)
 	ft_reset_fds();
 }
 
+static void	first_command(void)
+{
+	pid_t	pid;
+	int		wi;
+
+	if (pipe(g_global.pipes.p1))
+		ft_free_error(ERROR_PIPE);
+	pid = fork();
+	if (pid < 0)
+	{
+		ft_closep(g_global.pipes.p1, 2);
+		ft_free_error(ERROR_FORK);
+	}
+	else if (!pid)
+	{
+		ft_closep(g_global.pipes.p1, 0);
+		ft_select_exec(0);
+	}
+	else
+	{
+		wait(&wi);
+		g_global.exit_status = WEXITSTATUS(wi);
+	}
+	ft_closep(g_global.pipes.p1, 1);
+	g_global.pipes.p2[0] = g_global.pipes.p1[0];
+}
+
+static void middle_command(int i)
+{
+	pid_t	pid;
+	int		wi;
+
+	if (pipe(g_global.pipes.p1))
+		ft_free_error(ERROR_PIPE);
+	pid = fork();
+	if (pid < 0)
+	{
+		ft_closep(g_global.pipes.p1, 2);
+		ft_closep(g_global.pipes.p2, 0);
+		ft_free_error(ERROR_FORK);
+	}
+	else if (!pid)
+	{
+		ft_closep(g_global.pipes.p1, 0);
+		ft_select_exec(i);
+	}
+	else
+	{
+		wait(&wi);
+		g_global.exit_status = WEXITSTATUS(wi);
+	}
+	ft_closep(g_global.pipes.p2, 0);
+	g_global.pipes.p2[0] = g_global.pipes.p1[0];
+	ft_closep(g_global.pipes.p1, 1);
+}
+
 void	ft_multiple_cmds(void)
 {
-	
+	pid_t	pid;
+	int		wi;
+	int		i;
+
+	first_command();
+	i = 1;
+	while (i < g_global.n_cmds - 1)
+		middle_command(i++);
+	pid = fork();
+	if (pid < 0)
+		ft_free_error(ERROR_FORK);
+	else if (!pid)
+		ft_select_exec(g_global.n_cmds - 1);
+	else
+	{
+		wait(&wi);
+		g_global.exit_status = WEXITSTATUS(wi);
+	}
 }
+

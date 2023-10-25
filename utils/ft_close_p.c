@@ -1,43 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_env.c                                     :+:      :+:    :+:   */
+/*   ft_close_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 13:23:19 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/25 10:47:35 by lromero-         ###   ########.fr       */
+/*   Created: 2023/10/25 10:57:26 by lromero-          #+#    #+#             */
+/*   Updated: 2023/10/25 10:58:22 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_env(char *arg)
+void	ft_closep(int *p, int n)
 {
-	int	i;
-
-	i = 0;
-	if (arg || !ft_getenv("PATH"))
-	{
-		ft_print_error("env: ", NULL);
-		ft_print_error(ERROR_FILE, arg);
-		return (127);
-	}
-	while (i < g_global.n_env)
-	{
-		printf("%s=%s\n", g_global.env[i].key, g_global.env[i].value);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_unset(char **key)
-{
-	while (*key)
-	{
-		if (ft_getenv((*key)))
-			ft_delete_one_env((*key));
-		key++;
-	}
-	return (0);
+	if (n % 2 == 0)
+		close(p[0]);
+	else if (n > 0)
+		close(p[1]);
 }

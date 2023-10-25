@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:17:14 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/20 11:27:15 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:43:18 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	ft_infile(int n)
 		if (access(g_global.cmd[n].fd_in[i], R_OK))
 		{
 			ft_print_error(ERROR_FILE, g_global.cmd[n].fd_in[i]);
-			close(fd);
+			if (ft_pplen(g_global.cmd[n].fd_in2))
+				close(fd);
 			return (-1);
 		}
 		i++;
@@ -65,28 +66,29 @@ static int	ft_outfile(int n)
 
 int	ft_set_fds(int n)
 {
-	int	fd_in;
-	int	fd_out;
+	int	fds[2];
 
-	fd_in = -2;
-	fd_out = -2;
-	if (g_global.cmd[0].in >= 0)
-		fd_in = ft_infile(0);
-	if (fd_in == -1)
+	fds[0] = -2;
+	fds[1] = -2;
+	if (g_global.cmd[n].in >= 0)
+		fds[0] = ft_infile(n);
+	if (fds[0] == -1)
 		return (1);
-	if (g_global.cmd[0].out >= 0)
-		fd_out = ft_outfile(0);
-	if (fd_in >= 0)
+	if (g_global.cmd[n].out >= 0)
+		fds[1] = ft_outfile(n);
+	if (fds[0] >= 0)
 	{
-		g_global.t_stdin = dup(STDIN_FILENO);
-		dup2(fd_in, STDIN_FILENO);
-		close(fd_in);
+		if (g_global.t_stdin < 0)
+			g_global.t_stdin = dup(STDIN_FILENO);
+		dup2(fds[0], STDIN_FILENO);
+		close(fds[0]);
 	}
-	if (fd_out >= 0)
+	if (fds[1] >= 0)
 	{
-		g_global.t_stdout = dup(STDOUT_FILENO);
-		dup2(fd_out, STDOUT_FILENO);
-		close(fd_out);
+		if (g_global.t_stdout < 0)
+			g_global.t_stdout = dup(STDOUT_FILENO);
+		dup2(fds[1], STDOUT_FILENO);
+		close(fds[1]);
 	}
 	return (0);
 }
