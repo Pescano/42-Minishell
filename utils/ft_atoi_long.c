@@ -6,13 +6,13 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:50:59 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/05 12:03:03 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:16:28 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static long	atoiloop(const char *str, int pos, int sign)
+static long	atoiloop(const char *str, int pos)
 {
 	long	num;
 
@@ -46,7 +46,7 @@ long	ft_atoi_long(const char *str)
 	else
 		if (str[pos] == '+')
 			str++;
-	res = atoiloop(str, pos, sign);
+	res = atoiloop(str, pos);
 	if (res == -1)
 		return (res);
 	return (res * sign);

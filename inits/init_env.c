@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:31:24 by paescano          #+#    #+#             */
-/*   Updated: 2023/09/17 19:28:23 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:15:52 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static void	ft_get_env_size(char **env)
 
 static void	ft_add_env(char *env, int pos)
 {
-	char	*key;
-	char	*value;
 	int		i;
 
 	i = 0;

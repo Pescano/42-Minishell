@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:17:14 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/25 12:43:18 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:16:57 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	ft_infile(int n)
 static int	ft_outfile(int n)
 {
 	int	i;
-	int	fd;
 
 	i = 0;
 	while (g_global.cmd[n].fd_out && g_global.cmd[n].fd_out[i])
