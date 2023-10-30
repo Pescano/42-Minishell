@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:56:16 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:45:29 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:57:11 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_global
 	char	**cmd_splitted;
 	t_pipes	pipes;
 	t_lexer	lexer;
+	t_ast	ast;
 	t_env	*env;
 	t_cmd	*cmd;
 }	t_global;
@@ -477,6 +478,13 @@ void	ft_exe_more(int i);
 void	ft_select_exec(int i);
 
 // bonus
+/**
+ * @brief expands the asterisks from the command
+ * 
+ * @param cmd command to expand the asterisks
+ * @return char** command without asterisks
+ */
+char	**ft_expand_ast(char **cmd);
 /**
  * @brief find the asterisks in the command
  * 
