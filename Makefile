@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
+#    By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/30 12:03:58 by paescano         ###   ########.fr        #
+#    Updated: 2023/10/30 12:55:09 by lromero-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ clean_bonus:
 	@$(RM) $(OBJECTS_BONUS)
 	@echo $(R)Removed following objects: [$(OBJECTS_BONUS)]$(X)
 
-fclean_bonus: clean
+fclean_bonus: clean_bonus
 	@$(RM) $(NAME_BONUS)
 	@echo $(R)Removed following executable: [$(NAME_BONUS)]$(X)
 
@@ -109,13 +109,15 @@ norma_bonus:
 	@echo $(B)Checking Norminette...$(X)
 	@norminette $(CFILES_BONUS) ./bonus/include
 
-bonus: $(OBJECTS_BONUS)
+$(NAME_BONUS): $(OBJECTS_BONUS)
 	@echo $(G)Finished Compiling of [$(CFILES_BONUS)]$(X)
 	@echo
 	@echo $(Y)Compiling [$(NAME_BONUS)]...$(X)
 	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) $(OBJECTS_BONUS) -o $(NAME_BONUS) $(RL)
 	@echo $(G)Finished Compiling of [$(NAME_BONUS)]$(X)
 
-all_bonus: bonus
+bonus: $(NAME_BONUS)
 
-.PHONY: all clean fclean re norma bonus all_bonus clean_bonus fclean_bonus norma_bonus
+re_bonus: fclean_bonus bonus
+
+.PHONY: all clean fclean re norma bonus clean_bonus fclean_bonus norma_bonus re_bonus
