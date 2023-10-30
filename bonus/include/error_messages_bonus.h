@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_messages_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:04:46 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 18:04:58 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:46:21 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define ERROR_WRITE "\033[31mError\nwrite failed\033[0m\n"
 # define ERROR_ECVE ": command not found\n"
 # define ERROR_PIPE "\033[31mError\npipe failed\033[0m\n"
+# define ERROR_AST "minishell : ambiguous redirect\n"
 
 #endif

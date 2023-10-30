@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:56:16 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/30 11:57:11 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:39:58 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_ast
 {
 	int			start;
 	int			finish;
+	int			n;
+	int			flag;
 }	t_ast;
 
 typedef struct s_global

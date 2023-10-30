@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_ast_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:18:22 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:05:37 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:50:51 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ char	**ft_replace_ast(char **arg_splitted)
 	directory = opendir(".");
 	aux = readdir(directory);
 	files = NULL;
+	g_global.ast.n = 0;
 	while (aux != NULL)
 	{
 		filename = aux->d_name;
 		if (ft_find_match(filename, arg_splitted) == 1)
+		{
 			files = ft_add_pp(ft_strdup(filename), files);
+			g_global.ast.n++;
+		}
 		aux = readdir(directory);
 	}
 	closedir(directory);
@@ -34,7 +38,7 @@ char	**ft_replace_ast(char **arg_splitted)
 	return (files);
 }
 
-static char	**ft_change_ast(char *arg)
+static char	**ft_change_ast(char *arg, char **cmd, int n)
 {
 	char	**expand_args;
 	char	**tmp;
@@ -45,6 +49,10 @@ static char	**ft_change_ast(char *arg)
 	tmp = NULL;
 	i = 0;
 	expand_args = ft_replace_ast(ft_split_arg(arg));
+	if (n > 0 && g_global.ast.n > 1 && ((!cmd[n - 1][1]
+		&& (cmd[n - 1][0] == '>' || cmd[n - 1][0] == '<'))
+		|| (cmd[n - 1][0] == '>' && cmd[n - 1][1] == '>' && !cmd[n - 1][2])))
+		g_global.ast.flag = 1;
 	if (expand_args == NULL)
 		tmp = ft_add_pp(ft_strdup(arg), tmp);
 	else
@@ -70,17 +78,15 @@ char	**ft_expand_ast(char **cmd)
 	tmp = NULL;
 	while (cmd[i])
 	{
-		if (!ft_find_ast(cmd[i]))
+		if (!ft_find_ast(cmd[i])
+			|| (i > 0 && cmd[i - 1][0] == '<' && cmd[i - 1][1] == '<'))
 			tmp = ft_add_pp(ft_strdup(cmd[i]), tmp);
 		else
 		{
-			tmp2 = ft_change_ast(cmd[i]);
+			tmp2 = ft_change_ast(cmd[i], cmd, i);
 			j = 0;
 			while (tmp2[j])
-			{
-				tmp = ft_add_pp(ft_strdup(tmp2[j]), tmp);
-				j++;
-			}
+				tmp = ft_add_pp(ft_strdup(tmp2[j++]), tmp);
 			ft_freevpp((void **)tmp2);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:06:15 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:06:38 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:44:16 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static void	ft_execute_minishell(void)
 		if (ft_lexer(input))
 		{
 			ft_parser(input);
-			if (g_global.n_cmds == 1)
+			if (g_global.ast.flag)
+				ft_print_error(ERROR_AST, NULL);
+			else if (g_global.n_cmds == 1)
 				ft_single_command();
 			else if (g_global.n_cmds > 1)
 				ft_multiple_cmds();
