@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:34:57 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/14 13:23:29 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:36:35 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_cd(char *path)
 	char	*temp;
 	char	*new;
 
-	if (!path)
-		return (0);
 	temp = ft_getenv("PWD");
-	if (chdir(path))
+	if (!path)
 	{
-		ft_print_error(ERROR_FILE, path);
-		return (1);
+		if (chdir(ft_strjoin(ft_strdup("/Users/"), getenv("USER"))))
+			return (ft_print_error(ERROR_FILE, path), 1);
 	}
+	else if (chdir(path))
+		return (ft_print_error(ERROR_FILE, path), 1);
 	new = malloc(PATH_MAX);
 	if (!new)
 		ft_free_error(ERROR_MALLOC);

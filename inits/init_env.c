@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:31:24 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/30 11:15:52 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:14:55 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_init_env(char **env)
 	{
 		printf("%s", ERROR_MALLOC);
 		exit(EXIT_FAILURE);
-	}		
+	}
 	while (env[i])
 	{
 		ft_add_env(env[i], i);
