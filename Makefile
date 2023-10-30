@@ -6,7 +6,7 @@
 #    By: paescano <paescano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 15:44:34 by paescano          #+#    #+#              #
-#    Updated: 2023/10/26 12:53:12 by paescano         ###   ########.fr        #
+#    Updated: 2023/10/30 12:03:58 by paescano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 NAME_BONUS = minishell_bonus
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -rf
 RL = -lreadline
 
@@ -36,7 +36,7 @@ CFILES = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.
 		parser/ft_expand_quotes.c utils/ft_atoi_long.c utils/ft_com_path.c \
 		execute/builtins_export.c utils/ft_finish.c utils/ft_print_error.c \
 		utils/ft_set_fds.c handlers/handler_exec.c execute/exe_cve.c \
-		utils/ft_heredoc.c utils/ft_format_env.c utils/ft_close_p.c
+		utils/ft_heredoc.c utils/ft_format_env.c utils/ft_close_p.c \
 
 CFILES_BONUS = bonus/main_bonus.c bonus/get_next_line/get_next_line_bonus.c bonus/get_next_line/get_next_line_utils_bonus.c \
 		bonus/handlers/handler_env_bonus.c bonus/handlers/handler_cmd_bonus.c bonus/inits/init_minishell_bonus.c \
@@ -70,9 +70,9 @@ ifeq ($(SYS), Darwin)
 	RL	+= -L ~/.brew/opt/readline/lib
 endif
 
-$(OBJECTS) : $(CFILES)
+%.o : %.c
 	@echo $(Y)Compiling [$<]...$(X)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) $(INCLUDES) -c -o $@ $<
 
 $(NAME): $(OBJECTS)
 	@echo $(G)Finished Compiling of [$(CFILES)]$(X)
@@ -82,18 +82,6 @@ $(NAME): $(OBJECTS)
 	@echo $(G)Finished Compiling of [$(NAME)]$(X)
 
 all: $(NAME)
-#hay que poner %.o : %.c para que compile todos los .c
-#compila bien el mandatory si eliminar el bonus
-%.o : %.c
-	@echo $(Y)Compiling [$<]...$(X)
-	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) -c -o $@ $<
-
-bonus: $(OBJECTS_BONUS)
-	@echo $(G)Finished Compiling of [$(CFILES_BONUS)]$(X)
-	@echo
-	@echo $(Y)Compiling [$(NAME_BONUS)]...$(X)
-	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) $(OBJECTS_BONUS) -o $(NAME_BONUS) $(RL)
-	@echo $(G)Finished Compiling of [$(NAME_BONUS)]$(X)
 
 clean:
 	@$(RM) $(OBJECTS)
@@ -102,6 +90,14 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@echo $(R)Removed following executable: [$(NAME)]$(X)
+
+clean_bonus:
+	@$(RM) $(OBJECTS_BONUS)
+	@echo $(R)Removed following objects: [$(OBJECTS_BONUS)]$(X)
+
+fclean_bonus: clean
+	@$(RM) $(NAME_BONUS)
+	@echo $(R)Removed following executable: [$(NAME_BONUS)]$(X)
 
 re: fclean all
 
@@ -113,4 +109,13 @@ norma_bonus:
 	@echo $(B)Checking Norminette...$(X)
 	@norminette $(CFILES_BONUS) ./bonus/include
 
-.PHONY: all clean fclean re norma norma_bonus bonus
+bonus: $(OBJECTS_BONUS)
+	@echo $(G)Finished Compiling of [$(CFILES_BONUS)]$(X)
+	@echo
+	@echo $(Y)Compiling [$(NAME_BONUS)]...$(X)
+	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) $(OBJECTS_BONUS) -o $(NAME_BONUS) $(RL)
+	@echo $(G)Finished Compiling of [$(NAME_BONUS)]$(X)
+
+all_bonus: bonus
+
+.PHONY: all clean fclean re norma bonus all_bonus clean_bonus fclean_bonus norma_bonus
