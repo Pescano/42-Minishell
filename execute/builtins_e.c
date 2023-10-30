@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_e.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
+/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:15:54 by lromero-          #+#    #+#             */
-/*   Updated: 2023/10/14 13:36:24 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:12:52 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_echo(char **args)
 	int	nl;
 
 	nl = 0;
-	if (*args && !ft_strcmp(*args, "-n"))
+	while (*args && !ft_strcmp(*args, "-n"))
 	{
 		nl = 1;
 		args++;
