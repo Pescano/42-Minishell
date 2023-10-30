@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_long_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:08:09 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:08:23 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:18:26 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_bonus.h"
 
-static long	atoiloop(const char *str, int pos, int sign)
+static long	atoiloop(const char *str, int pos)
 {
 	long	num;
 
@@ -46,7 +46,7 @@ long	ft_atoi_long(const char *str)
 	else
 		if (str[pos] == '+')
 			str++;
-	res = atoiloop(str, pos, sign);
+	res = atoiloop(str, pos);
 	if (res == -1)
 		return (res);
 	return (res * sign);

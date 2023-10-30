@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_fds_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:17:12 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:17:20 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:18:43 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ static int	ft_infile(int n)
 static int	ft_outfile(int n)
 {
 	int	i;
-	int	fd;
-
+	
 	i = 0;
 	while (g_global.cmd[n].fd_out && g_global.cmd[n].fd_out[i])
 	{
