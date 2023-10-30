@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:18:22 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/30 12:50:51 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:16:40 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_replace_ast(char **arg_splitted)
 	return (files);
 }
 
-static char	**ft_change_ast(char *arg, char **cmd, int n)
+static char	**ft_change_ast(char *arg, char **c, int n)
 {
 	char	**expand_args;
 	char	**tmp;
@@ -49,9 +49,9 @@ static char	**ft_change_ast(char *arg, char **cmd, int n)
 	tmp = NULL;
 	i = 0;
 	expand_args = ft_replace_ast(ft_split_arg(arg));
-	if (n > 0 && g_global.ast.n > 1 && ((!cmd[n - 1][1]
-		&& (cmd[n - 1][0] == '>' || cmd[n - 1][0] == '<'))
-		|| (cmd[n - 1][0] == '>' && cmd[n - 1][1] == '>' && !cmd[n - 1][2])))
+	if (n > 0 && g_global.ast.n > 1 && ((!c[n - 1][1]
+			&& (c[n - 1][0] == '>' || c[n - 1][0] == '<'))
+			|| (c[n - 1][0] == '>' && c[n - 1][1] == '>' && !c[n - 1][2])))
 		g_global.ast.flag = 1;
 	if (expand_args == NULL)
 		tmp = ft_add_pp(ft_strdup(arg), tmp);

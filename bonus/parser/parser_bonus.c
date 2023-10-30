@@ -6,7 +6,7 @@
 /*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:43:04 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/30 12:40:32 by lromero-         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:15:35 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	ft_set_up_cmd(void)
 
 void	ft_parser(char *input)
 {
-	g_global.ast.flag = 0;	
+	g_global.ast.flag = 0;
 	ft_split_pipe(input);
 	ft_init_cmd();
 	ft_set_up_cmd();

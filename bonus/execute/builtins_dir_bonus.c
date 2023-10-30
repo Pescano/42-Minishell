@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_dir_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lromero- <l.romero.it@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:54:36 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 17:54:53 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:36:00 by lromero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_cd(char *path)
 	char	*temp;
 	char	*new;
 
-	if (!path)
-		return (0);
 	temp = ft_getenv("PWD");
-	if (chdir(path))
+	if (!path)
 	{
-		ft_print_error(ERROR_FILE, path);
-		return (1);
+		if (chdir(ft_strjoin(ft_strdup("/Users/"), getenv("USER"))))
+			return (ft_print_error(ERROR_FILE, path), 1);
 	}
+	else if (chdir(path))
+		return (ft_print_error(ERROR_FILE, path), 1);
 	new = malloc(PATH_MAX);
 	if (!new)
 		ft_free_error(ERROR_MALLOC);
