@@ -6,7 +6,7 @@
 /*   By: paescano <paescano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:06:37 by paescano          #+#    #+#             */
-/*   Updated: 2023/10/25 18:06:45 by paescano         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:16:09 by paescano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_echo(char **args)
 	int	nl;
 
 	nl = 0;
-	if (*args && !ft_strcmp(*args, "-n"))
+	while (*args && !ft_strcmp(*args, "-n"))
 	{
 		nl = 1;
 		args++;
